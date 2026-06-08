@@ -145,7 +145,7 @@ WriteSummaryFooterSuperLinterInfoTest() {
   EXPECTED_CONTENT=$(
     cat <<EOF
 
-Powered by [Super-linter](https://github.com/super-linter/super-linter)
+Powered by [Super-linter](https://github.com/step-security/super-linter)
 EOF
   )
   CheckIfContentsDiff "${RESULTS_FILE}" "${EXPECTED_CONTENT}"

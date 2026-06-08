@@ -1,12 +1,12 @@
 ---
 name: "Super-Linter"
-author: "Super-linter contributors"
+author: "step-security"
 description: "Super-linter is a ready-to-run collection of linters and code analyzers, to help validate your source code."
 runs:
-  using: "docker"
-  image: "docker://ghcr.io/super-linter/super-linter:v8.6.0" # x-release-please-version
+  using: docker
+  image: docker://ghcr.io/step-security/super-linter@sha256:e7e8dc962ae5228bc7c5bb76d5c83031d0a8e3b4b052fbcb639c9126289a78a5
 branding:
   icon: "check-square"
   color: "white"
-# You can view https://github.com/super-linter/super-linter#environment-variables
+# You can view https://github.com/step-security/super-linter#environment-variables
 # to see a comprehensive list of all environment variables that can be passed

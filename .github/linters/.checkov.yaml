@@ -14,6 +14,12 @@ quiet: true
 # The tests directory contains files that we need for test cases that are
 # expected to fail. Checkov would catch those issues, so we exclude the tests
 # directory.
+# CKV_GHA_7: workflow_dispatch inputs are intentional for release/publish
+# workflows in this fork (docker.yml, auto_cherry_pick.yml, actions_release.yml,
+# audit_package.yml).
+skip-check:
+  - CKV_GHA_7
+
 skip-path:
   - test/linters/ansible
   - test/linters/arm

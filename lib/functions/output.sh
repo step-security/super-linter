@@ -64,7 +64,7 @@ WriteSummaryFooterSuperLinterInfo() {
   local SUPER_LINTER_SUMMARY_OUTPUT_PATH="${1}"
   {
     echo ""
-    echo "Powered by [Super-linter](https://github.com/super-linter/super-linter)"
+    echo "Powered by [Super-linter](https://github.com/step-security/super-linter)"
   } >>"${SUPER_LINTER_SUMMARY_OUTPUT_PATH}"
 }
 

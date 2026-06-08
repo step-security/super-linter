@@ -296,7 +296,7 @@ BuildFileArraysFilterRegexExcludeStartOfStringTest() {
   local TEST_FILE_PATH="${GITHUB_WORKSPACE}/action.yml"
   local TEST_FILE_PATHS=()
   TEST_FILE_PATHS+=("${TEST_FILE_PATH}")
-  TEST_FILE_PATHS+=("${GITHUB_WORKSPACE}/.github/dependabot.yml")
+  TEST_FILE_PATHS+=("${GITHUB_WORKSPACE}/.github/linters/.markdown-lint.yml")
 
   BuildFileArraysTest "${GITHUB_WORKSPACE}" "" "${FILTER_REGEX_EXCLUDE}" "${FILE_ARRAYS_DIRECTORY_PATH}" "${TEST_FILE_PATHS[@]}" "true"
 

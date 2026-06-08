@@ -646,7 +646,7 @@ function WarnIfVariableIsSet() {
   local INPUT_VARIABLE_NAME="${1}"
 
   if [ -n "${INPUT_VARIABLE:-}" ]; then
-    warn "${INPUT_VARIABLE_NAME} environment variable is set, it's deprecated, and super-linter will ignore it. Remove it from your configuration. This warning may turn in a fatal error in the future. For more information, see the upgrade guide: https://github.com/super-linter/super-linter/blob/main/docs/upgrade-guide.md"
+    warn "${INPUT_VARIABLE_NAME} environment variable is set, it's deprecated, and super-linter will ignore it. Remove it from your configuration. This warning may turn in a fatal error in the future."
   fi
 }
 

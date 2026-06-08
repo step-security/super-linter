@@ -1,2 +1,6 @@
 # Generated files
 CHANGELOG.md
+
+# Files that intentionally don't follow Prettier formatting
+README.md
+.github/workflows/docker.yml

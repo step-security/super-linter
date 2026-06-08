@@ -10,7 +10,7 @@ echo "Installing Ktlint: ${KTLINT_VERSION}"
 
 url=$(
   set -euo pipefail
-  curl -s \
+  curl -sL \
     -H "Accept: application/vnd.github+json" \
     -H "Authorization: Bearer $(cat /run/secrets/GITHUB_TOKEN)" \
     "https://api.github.com/repos/pinterest/ktlint/releases/tags/${KTLINT_VERSION}" |

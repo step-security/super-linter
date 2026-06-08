@@ -5,7 +5,7 @@ function IssueHintForFullGitHistory() {
   if [[ "${RUN_LOCAL}" == "false" ]]; then
     info "Check that you set the 'fetch-depth: 0' option for the actions/checkout step in your GitHub Actions workflow."
   fi
-  info "See https://github.com/super-linter/super-linter#get-started"
+  info "See https://github.com/step-security/super-linter#get-started"
   info "Is shallow repository: $(git -C "${GITHUB_WORKSPACE}" rev-parse --is-shallow-repository)"
 }
 export -f IssueHintForFullGitHistory

@@ -1,3 +1,4 @@
+<!-- markdownlint-disable-next-line MD041 -->
 [![StepSecurity Maintained Action](https://raw.githubusercontent.com/step-security/maintained-actions-assets/main/assets/maintained-action-banner.png)](https://docs.stepsecurity.io/actions/stepsecurity-maintained-actions)
 
 # Super-Linter
@@ -12,8 +13,6 @@ adhering to those conventions.
 Super-linter analyzes source code files using several tools, and reports the
 issues that those tools find as console output, and as
 [GitHub Actions status checks](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/collaborating-on-repositories-with-code-quality-features/about-status-checks).
-You can also
-[run super-linter outside GitHub Actions](#run-super-linter-outside-github-actions).
 
 Super-linter can also help you
 [fix linting and formatting issues](#fix-linting-and-formatting-issues).
@@ -38,9 +37,8 @@ Here are some notable Super-linter features:
   seconds.
 - **Highly curated set of linters**: Avoid including linters that implement
   overlapping checks, reducing bloat, scanning times, and container image size.
-- **Run on GitHub Actions or other environments**: Super-linter runs
-  [on GitHub Actions](#get-started) and
-  [other runtime environments](#run-using-a-container-runtime-engine), with the
+- **Run on GitHub Actions**: Super-linter runs
+  [on GitHub Actions](#get-started), with the
   only dependency of an OCI-compatible container runtime engine, such as Docker.
 - **Lean codebase**: Super-linter doesn't reinvent the wheel, and builds on top
   of established tools and standards, such as
@@ -50,14 +48,6 @@ Here are some notable Super-linter features:
 - **Original design**: to the best of our knowledge, Super-linter is the first
   open-source, fully-containerized linting suite. Other projects borrow ideas
   and design choices from Super-linter (and we're cool with that :).
-
-## How to contribute
-
-If you would like to help contribute to Super-linter, see
-[CONTRIBUTING](https://github.com/step-security/super-linter/blob/main/.github/CONTRIBUTING.md).
-
-For a guide on how to set up your development environment and contribute to
-Super-linter, see the [development guide](docs/DEVELOPMENT.md).
 
 ## Supported linters and formatters
 
@@ -179,7 +169,7 @@ To run super-linter as a GitHub Action, you do the following:
              persist-credentials: false
 
          - name: Super-linter
-           uses: step-security/super-linter@v8.6.0 # x-release-please-version
+           uses: step-security/super-linter@v8 # x-release-please-version
            env:
              # To report GitHub Actions status checks
              GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -188,11 +178,6 @@ To run super-linter as a GitHub Action, you do the following:
 1. Commit that file to a new branch.
 1. Push the new commit to the remote repository.
 1. Create a new pull request to observe the results.
-
-## Upgrade to newer super-linter versions
-
-For more information about upgrading super-linter to a new major version, see
-the [upgrade guide](docs/upgrade-guide.md).
 
 ## Add Super-Linter badge in your repository readme
 
@@ -362,7 +347,7 @@ You can configure Super-linter using the following environment variables:
 | **RENOVATE_SHAREABLE_CONFIG_PRESET_FILE_NAMES**        | not set                                                                      | Comma-separated filenames for [renovate shareable config preset](https://docs.renovatebot.com/config-presets/) (ex: `default.json`)                                                                                                                                                                                                                                         |
 | **REMOVE_ANSI_COLOR_CODES_FROM_OUTPUT**                | `false`                                                                      | If set to `true`, Super-linter removes ANSI color codes from linters stdout and stderr files, and from the Super-linter log file.                                                                                                                                                                                                                                           |
 | **RUBY_CONFIG_FILE**                                   | `.ruby-lint.yml`                                                             | Filename for [rubocop configuration](https://docs.rubocop.org/rubocop/configuration.html) (ex: `.ruby-lint.yml`, `.rubocop.yml`)                                                                                                                                                                                                                                            |
-| **RUN_LOCAL**                                          | `false`                                                                      | Set this to `true` when running outside GitHub Actions or when you want to disable getting environment information from the GitHub Actions environment. For more information about running Super-linter outside GitHub Actions, see [Run Super-Linter outside GitHub Actions](#run-super-linter-outside-github-actions).                                                    |
+| **RUN_LOCAL**                                          | `false`                                                                      | Set this to `true` when running outside GitHub Actions or when you want to disable getting environment information from the GitHub Actions environment.                                                                                                                                                                                                                     |
 | **RUST_CLIPPY_COMMAND_OPTIONS**                        | not set                                                                      | Additional options and arguments to add to the command when running Clippy.                                                                                                                                                                                                                                                                                                 |
 | **SAVE_SUPER_LINTER_OUTPUT**                           | `false`                                                                      | If set to `true`, Super-linter will save its output in the workspace. For more information, see [Super-linter outputs](#super-linter-outputs).                                                                                                                                                                                                                              |
 | **SAVE_SUPER_LINTER_SUMMARY**                          | `false`                                                                      | If set to `true`, Super-linter will save a summary. For more information, see [Summary outputs](#summary-outputs).                                                                                                                                                                                                                                                          |
@@ -502,10 +487,6 @@ The `VALIDATE_[LANGUAGE]` variables work as follows:
 - If you set any of the `VALIDATE_[LANGUAGE]` variables to both `true` and
   `false`, super-linter fails reporting an error.
 
-For more information about reusing Super-linter configuration across
-environments, see
-[Share Environment variables between environments](docs/run-linter-locally.md#share-environment-variables-between-environments).
-
 ### VALIDATE_ALL_CODEBASE
 
 To lint and format only the files that you changed or created, set
@@ -621,15 +602,12 @@ jobs:
           fetch-depth: 0
           persist-credentials: false
       - name: Super-Linter
-        uses: step-security/super-linter@v8.6.0 # x-release-please-version
+        uses: step-security/super-linter@v8 # x-release-please-version
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           # Set your fix mode variables to true
           FIX_SHELL_SHFMT: true
           FIX_YAML_PRETTIER: true
-          # To reuse the same Super-linter configuration that you use in the
-          # lint job without duplicating it, see
-          # https://github.com/step-security/super-linter/blob/main/docs/run-linter-locally.md#share-environment-variables-between-environments
       - name: Commit and push linting fixes
         # Run only on:
         # - Pull requests
@@ -823,27 +801,6 @@ consider the following if you set `VALIDATE_ALL_CODEBASE` to `false`:
 By setting `FAIL_ON_INVALID_GITHUB_ACTIONS_EVENT_CONFIGURATION` to `true`,
 Super-linter exits with an error if the configuration is not suitable for the
 GitHub event that triggered the issue.
-
-## Run Super-Linter outside GitHub Actions
-
-You don't need GitHub Actions to run super-linter. It supports several runtime
-environments.
-
-### Run using a container runtime engine
-
-You can run super-linter outside GitHub Actions. For example, you can run
-super-linter from a shell:
-
-```bash
-docker run \
-  -e LOG_LEVEL=DEBUG \
-  -e RUN_LOCAL=true \
-  -v /path/to/local/codebase:/tmp/lint \
-  ghcr.io/step-security/super-linter:latest
-```
-
-For more information, see
-[Run super-linter outside GitHub Actions](https://github.com/step-security/super-linter/blob/main/docs/run-linter-locally.md).
 
 ## Use your own SSH key and certificate
 

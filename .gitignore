@@ -87,7 +87,6 @@ test/reports
 .github-personal-access-token
 
 # Test leftovers
-.lintr
 test/linters/rust_clippy/**/Cargo.lock
 test/linters/rust_clippy/**/target
 test/linters/**/src/bin

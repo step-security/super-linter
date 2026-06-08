@@ -8,7 +8,6 @@ test: \
 	info \
 	validate-container-image-labels \
 	docker-build-check \
-	docker-dev-container-build-check \
 	composer-audit \
 	npm-audit \
 	pip-audit \
@@ -100,14 +99,6 @@ GITHUB_TOKEN_PATH := "$(CURDIR)/.github-personal-access-token"
 
 ifeq ($(GITHUB_TOKEN),)
 GITHUB_TOKEN="$(shell cat "${GITHUB_TOKEN_PATH}")"
-endif
-
-DEV_CONTAINER_URL := "super-linter/dev-container:latest"
-
-ifeq ($(GITHUB_HEAD_REF),)
-RELEASE_PLEASE_TARGET_BRANCH := "$(shell git branch --show-current)"
-else
-RELEASE_PLEASE_TARGET_BRANCH := "${GITHUB_HEAD_REF}"
 endif
 
 .PHONY: info
@@ -708,41 +699,3 @@ test-git-valid-worktree: ## Run super-linter against a Git repository with workt
 		"run_test_case_git_valid_worktree" \
 		"$(IMAGE)"
 
-.PHONY: docker-dev-container-build-check ## Run Docker build checks against the dev-container image
-docker-dev-container-build-check:
-	DOCKER_BUILDKIT=1 docker buildx build --check \
-	"${CURDIR}/dev-dependencies"
-
-.PHONY: build-dev-container-image
-build-dev-container-image: docker-dev-container-build-check ## Build commit linter container image
-	DOCKER_BUILDKIT=1 docker buildx build --load \
-		--build-arg GID=$(shell id -g) \
-		--build-arg UID=$(shell id -u) \
-		-t ${DEV_CONTAINER_URL} "${CURDIR}/dev-dependencies"
-
-.PHONY: release-please-dry-run
-release-please-dry-run: build-dev-container-image check-github-token ## Run release-please in dry-run mode to preview the release pull request
-	@echo "Running release-please against branch: ${RELEASE_PLEASE_TARGET_BRANCH}"; \
-	docker run \
-		-v "$(CURDIR):/source-repository" \
-		--rm \
-		${DEV_CONTAINER_URL} \
-		release-please \
-		release-pr \
-		--config-file .github/release-please/release-please-config.json \
-		--dry-run \
-		--manifest-file .github/release-please/.release-please-manifest.json \
-		--repo-url super-linter/super-linter \
-		--target-branch ${RELEASE_PLEASE_TARGET_BRANCH} \
-		--token "${GITHUB_TOKEN}" \
-		--trace
-
-.PHONY: open-shell-dev-container
-open-shell-dev-container: build-dev-container-image ## Open a shell in the dev tools container
-	docker run $(DOCKER_FLAGS) \
-		--interactive \
-		--entrypoint /bin/bash \
-		--rm \
-		-v "$(CURDIR)/dev-dependencies/package-lock.json":/app/package-lock.json \
-		-v "$(CURDIR)/dev-dependencies/package.json":/app/package.json \
-		$(DEV_CONTAINER_URL)

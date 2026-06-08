@@ -81,7 +81,6 @@ RUN apk add --no-cache \
   nodejs-current
 
 # The chown fixes broken uid/gid in ast-types-flow dependency
-# (see https://github.com/super-linter/super-linter/issues/3901)
 # Npm is not a runtime dependency but we need it to ensure that npm packages
 # are installed when we run the test suite. If we decide to remove it, add
 # the following command to the RUN instruction below:
@@ -151,11 +150,11 @@ LABEL com.github.actions.name="Super-Linter" \
   com.github.actions.description="Super-linter is a ready-to-run collection of linters and code analyzers, to help validate your source code." \
   com.github.actions.icon="code" \
   com.github.actions.color="red" \
-  maintainer="@Hanse00, @ferrarimarco, @zkoppert" \
-  org.opencontainers.image.authors="Super Linter Contributors: https://github.com/super-linter/super-linter/graphs/contributors" \
-  org.opencontainers.image.url="https://github.com/super-linter/super-linter" \
-  org.opencontainers.image.source="https://github.com/super-linter/super-linter" \
-  org.opencontainers.image.documentation="https://github.com/super-linter/super-linter" \
+  maintainer="step-security" \
+  org.opencontainers.image.authors="step-security" \
+  org.opencontainers.image.url="https://github.com/step-security/super-linter" \
+  org.opencontainers.image.source="https://github.com/step-security/super-linter" \
+  org.opencontainers.image.documentation="https://github.com/step-security/super-linter" \
   org.opencontainers.image.description="A collection of code linters and analyzers."
 
 # https://docs.docker.com/engine/reference/builder/#automatic-platform-args-in-the-global-scope
