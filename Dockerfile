@@ -7,31 +7,31 @@
 #########################################
 # Get dependency images as build stages #
 #########################################
-FROM alpine/terragrunt:1.15.3 AS terragrunt
-FROM dotenvlinter/dotenv-linter:4.0.0 AS dotenv-linter
-FROM ghcr.io/terraform-linters/tflint:v0.62.1 AS tflint
-FROM alpine/helm:4.2.0 AS helm
-FROM golang:1.26.3-alpine AS golang
-FROM golangci/golangci-lint:v2.12.2 AS golangci-lint
-FROM goreleaser/goreleaser:v2.15.4 AS goreleaser
-FROM hadolint/hadolint:v2.14.0-alpine AS dockerfile-lint
-FROM registry.k8s.io/kustomize/kustomize:v5.8.1 AS kustomize
-FROM hashicorp/terraform:1.15.3 AS terraform
-FROM koalaman/shellcheck:v0.11.0 AS shellcheck
-FROM mstruebing/editorconfig-checker:v3.6.1 AS editorconfig-checker
-FROM mvdan/shfmt:v3.13.1 AS shfmt
-FROM rhysd/actionlint:1.7.12 AS actionlint
-FROM scalameta/scalafmt:v3.11.1 AS scalafmt
-FROM zricethezav/gitleaks:v8.30.1 AS gitleaks
-FROM yoheimuta/protolint:0.56.4 AS protolint
-FROM ghcr.io/clj-kondo/clj-kondo:2026.04.15-alpine AS clj-kondo
-FROM dart:3.12.0-sdk AS dart
-FROM mcr.microsoft.com/dotnet/sdk:10.0.300-alpine3.23 AS dotnet-sdk
-FROM composer/composer:2.9.8 AS php-composer
-FROM ghcr.io/aquasecurity/trivy:0.70.0 AS trivy
-FROM ghcr.io/yannh/kubeconform:v0.7.0 AS kubeconform
+FROM alpine/terragrunt:1.15.3@sha256:9b7db1fe9c3af8a0bb2305535703ba22d003f604bc9788e4f86536743b66295f AS terragrunt
+FROM dotenvlinter/dotenv-linter:4.0.0@sha256:49a3c89203aeabb814e7fc028c4bcaf569c6ead29e58dbad5e348324d042d120 AS dotenv-linter
+FROM ghcr.io/terraform-linters/tflint:v0.62.1@sha256:8cb1f29fb6a09ceb06ca22a2e7ada7e9fe5b931006e0171e5d9d17110b51c800 AS tflint
+FROM alpine/helm:4.2.0@sha256:af08f75a3130d666a50b9fc150f40987ef20b885cf67659aabf4b83a5f2c5501 AS helm
+FROM golang:1.26.3-alpine@sha256:91eda9776261207ea25fd06b5b7fed8d397dd2c0a283e77f2ab6e91bfa71079d AS golang
+FROM golangci/golangci-lint:v2.12.2@sha256:5cceeef04e53efe1470638d4b4b4f5ceefd574955ab3941b2d9a68a8c9ad5240 AS golangci-lint
+FROM goreleaser/goreleaser:v2.15.4@sha256:579eee23514fa647adcc669b5875f866f1c1faf5a0464aec4614a9121684c06c AS goreleaser
+FROM hadolint/hadolint:v2.14.0-alpine@sha256:7aba693c1442eb31c0b015c129697cb3b6cb7da589d85c7562f9deb435a6657c AS dockerfile-lint
+FROM registry.k8s.io/kustomize/kustomize:v5.8.1@sha256:899fcd3bc898160e62bcaf82932b0cb29ba38d16272353db2e7acbba82129429 AS kustomize
+FROM hashicorp/terraform:1.15.3@sha256:a12a7a9301bbab26589c0a353d5bdfc68bd1a52aa818cbdd698bf0dec094bd61 AS terraform
+FROM koalaman/shellcheck:v0.11.0@sha256:61862eba1fcf09a484ebcc6feea46f1782532571a34ed51fedf90dd25f925a8d AS shellcheck
+FROM mstruebing/editorconfig-checker:v3.6.1@sha256:af556694c3eb0a16b598efbe84c1171d40dfb779fdac6f01b89baedde065556f AS editorconfig-checker
+FROM mvdan/shfmt:v3.13.1@sha256:f22f3936140be1ba02d493b5d2b91d0e8b4af93fd903e7f46c477822bca4a3be AS shfmt
+FROM rhysd/actionlint:1.7.12@sha256:b1934ee5f1c509618f2508e6eb47ee0d3520686341fec936f3b79331f9315667 AS actionlint
+FROM scalameta/scalafmt:v3.11.1@sha256:6d71ea823d61173d9ee3f09193a8e62294eeb2aeb20e9bbbf20ac5abc5349606 AS scalafmt
+FROM zricethezav/gitleaks:v8.30.1@sha256:c00b6bd0aeb3071cbcb79009cb16a60dd9e0a7c60e2be9ab65d25e6bc8abbb7f AS gitleaks
+FROM yoheimuta/protolint:0.56.4@sha256:c462eb6acd1327efc455e32a440c25dff78a7fe73ae40b364a4a59c11b234485 AS protolint
+FROM ghcr.io/clj-kondo/clj-kondo:2026.04.15-alpine@sha256:b142ebccd72a3f980fccac2ba7553d928c00da2d6611ad4e3f2454d50f7f3fa8 AS clj-kondo
+FROM dart:3.12.0-sdk@sha256:1bc3667e7e5d647bf0f00d62673790b06719ba39e108776a7cc3529887e81fb7 AS dart
+FROM mcr.microsoft.com/dotnet/sdk:10.0.300-alpine3.23@sha256:5c559aa5d99337e400d39ab4fa1f6979d126c29b20939d53658ed38300571e74 AS dotnet-sdk
+FROM composer/composer:2.9.8@sha256:a250c6759909bd7abe2090457e9dc68aa7b11bc19078a3d1a7f0be1294332377 AS php-composer
+FROM ghcr.io/aquasecurity/trivy:0.70.0@sha256:be1190afcb28352bfddc4ddeb71470835d16462af68d310f9f4bca710961a41e AS trivy
+FROM ghcr.io/yannh/kubeconform:v0.7.0@sha256:85dbef6b4b312b99133decc9c6fc9495e9fc5f92293d4ff3b7e1b30f5611823c AS kubeconform
 
-FROM python:3.14.3-alpine3.23 AS python-base
+FROM python:3.14.3-alpine3.23@sha256:faee120f7885a06fcc9677922331391fa690d911c020abb9e8025ff3d908e510 AS python-base
 
 FROM python-base AS clang-format
 

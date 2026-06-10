@@ -1,0 +1,86 @@
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: daily
+
+  - package-ecosystem: docker
+    directory: /
+    schedule:
+      interval: daily
+
+  - package-ecosystem: bundler
+    directory: /dependencies
+    schedule:
+      interval: daily
+
+  - package-ecosystem: npm
+    directory: /dependencies
+    schedule:
+      interval: daily
+
+  - package-ecosystem: docker
+    directory: /test/linters/dockerfile_hadolint/bad
+    schedule:
+      interval: daily
+
+  - package-ecosystem: docker
+    directory: /test/linters/dockerfile_hadolint/good
+    schedule:
+      interval: daily
+
+  - package-ecosystem: nuget
+    directory: /test/linters/dotnet_sln_format_analyzers/bad/src
+    schedule:
+      interval: daily
+
+  - package-ecosystem: nuget
+    directory: /test/linters/dotnet_sln_format_analyzers/good/src
+    schedule:
+      interval: daily
+
+  - package-ecosystem: nuget
+    directory: /test/linters/dotnet_sln_format_style/bad/src
+    schedule:
+      interval: daily
+
+  - package-ecosystem: nuget
+    directory: /test/linters/dotnet_sln_format_style/good/src
+    schedule:
+      interval: daily
+
+  - package-ecosystem: nuget
+    directory: /test/linters/dotnet_sln_format_whitespace/bad/src
+    schedule:
+      interval: daily
+
+  - package-ecosystem: nuget
+    directory: /test/linters/dotnet_sln_format_whitespace/good/src
+    schedule:
+      interval: daily
+
+  - package-ecosystem: gomod
+    directory: /test/linters/go_modules/go_modules_bad
+    schedule:
+      interval: daily
+
+  - package-ecosystem: gomod
+    directory: /test/linters/go_modules/go_modules_good
+    schedule:
+      interval: daily
+
+  - package-ecosystem: docker
+    directory: /test/linters/jscpd/good
+    schedule:
+      interval: daily
+
+  - package-ecosystem: docker
+    directory: /test/linters/trivy/bad
+    schedule:
+      interval: daily
+
+  - package-ecosystem: docker
+    directory: /test/linters/trivy/good
+    schedule:
+      interval: daily
