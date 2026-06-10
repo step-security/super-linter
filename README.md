@@ -20,19 +20,10 @@ Super-linter can also help you
 Super-linter is licensed under an
 [MIT License](https://github.com/step-security/super-linter/blob/main/LICENSE).
 
-[![Super-Linter](https://github.com/step-security/super-linter/actions/workflows/cd.yml/badge.svg)](https://github.com/marketplace/actions/super-linter)
-
 Here are some notable Super-linter features:
 
 - **MIT License**: Super-linter is licensed under a [MIT License](LICENSE).
-- **Independent project**: Super-linter is maintained by a team of independent
-  developers and is not commercially backed by any entity that might influence
-  the course of the project.
-- **Widely used**: Super-linter is the
-  [most widely used](https://github.com/step-security/super-linter/network/dependents)
-  and [forked](https://github.com/step-security/super-linter/forks) project of
-  this kind.
-- **Runs linters in parallel**: Since `v6`, Super-linter parallelizes running
+- **Runs linters in parallel**: Super-linter parallelizes running
   all the included linters, leading to scanning massive code repositories in
   seconds.
 - **Highly curated set of linters**: Avoid including linters that implement
@@ -45,9 +36,6 @@ Here are some notable Super-linter features:
   [GNU Parallel](https://www.gnu.org/software/parallel/).
 - **Extensive test suite**: Super-linter includes an extensive test suite that
   covers every single linter and analyzer that Super-linter ships.
-- **Original design**: to the best of our knowledge, Super-linter is the first
-  open-source, fully-containerized linting suite. Other projects borrow ideas
-  and design choices from Super-linter (and we're cool with that :).
 
 ## Supported linters and formatters
 
@@ -701,7 +689,7 @@ Some of the linters and formatters that super-linter provides can be configured
 to disable certain rules or checks, and to ignore certain files or part of them.
 
 For more information about how to configure each linter or formatter, review
-[their own documentation](#supported-linters-and-formatters).
+[documentation](#supported-linters-and-formatters).
 
 ## Include or exclude files from checks
 

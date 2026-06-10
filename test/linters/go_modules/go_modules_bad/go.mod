@@ -1,4 +1,4 @@
-module github.com/super-linter/super-linter
+module github.com/step-security/super-linter
 
 go 1.24.0
 
