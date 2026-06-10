@@ -90,7 +90,7 @@ endif
 
 ifeq ($(SUPER_LINTER_TEST_CONTAINER_URL),)
 # Default to the latest tag
-SUPER_LINTER_TEST_CONTAINER_URL := "ghcr.io/super-linter/super-linter:${IMAGE_PREFIX}latest"
+SUPER_LINTER_TEST_CONTAINER_URL := "ghcr.io/step-security/super-linter:${IMAGE_PREFIX}latest"
 else
 SUPER_LINTER_TEST_CONTAINER_URL := ${CONTAINER_IMAGE_ID}
 endif
@@ -168,16 +168,6 @@ docker: docker-build-check check-github-token ## Build the container image
 		--build-arg BUILD_DATE=$${BUILD_DATE} \
 		--build-arg BUILD_REVISION=$${BUILD_REVISION} \
 		--build-arg BUILD_VERSION=$${BUILD_VERSION} \
-		--cache-from type=registry,ref=ghcr.io/super-linter/super-linter:${IMAGE_PREFIX}latest-buildcache \
-		--cache-from type=registry,ref=ghcr.io/super-linter/super-linter:latest-buildcache-base_image \
-		--cache-from type=registry,ref=ghcr.io/super-linter/super-linter:latest-buildcache-clang-format \
-		--cache-from type=registry,ref=ghcr.io/super-linter/super-linter:latest-buildcache-python-builder \
-		--cache-from type=registry,ref=ghcr.io/super-linter/super-linter:latest-buildcache-npm-builder \
-		--cache-from type=registry,ref=ghcr.io/super-linter/super-linter:latest-buildcache-tflint-plugins \
-		--cache-from type=registry,ref=ghcr.io/super-linter/super-linter:latest-buildcache-lintr-installer \
-		--cache-from type=registry,ref=ghcr.io/super-linter/super-linter:latest-buildcache-powershell-installer \
-		--cache-from type=registry,ref=ghcr.io/super-linter/super-linter:latest-buildcache-php-linters \
-		--cache-from type=registry,ref=ghcr.io/super-linter/super-linter:latest-buildcache-ruby-installer \
 		--secret id=GITHUB_TOKEN,src=$(GITHUB_TOKEN_PATH) \
 		--target $(IMAGE) \
 		-t $(SUPER_LINTER_TEST_CONTAINER_URL) .
