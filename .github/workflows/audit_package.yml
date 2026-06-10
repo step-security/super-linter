@@ -11,6 +11,12 @@ on:
         description: "Specify a base branch"
         required: false
         default: "main"
+      working_directory:
+        description: "Working directories to run commands in (comma-separated, optional)"
+        required: false
+        type: string
+        default: "dependencies"
+
   schedule:
     - cron: "0 0 * * 1"
 
@@ -20,6 +26,7 @@ jobs:
     with:
       force: ${{ inputs.force || false }}
       base_branch: ${{ inputs.base_branch || 'main' }}
+      working_directory: ${{ matrix.working_directory }}
 
 permissions:
   contents: write
