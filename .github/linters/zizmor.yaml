@@ -1,0 +1,28 @@
+---
+rules:
+  # There is a bug with the Dependabot cooldown feature. Disabling this audit
+  # until the bug is fixed and we enable cooldown again.
+  # TODO: enable cooldown after the bug is fixed
+  dependabot-cooldown:
+    disable: true
+  # TODO: disable these ignores after we pin versions
+  unpinned-uses:
+    ignore:
+      - ci.yml
+      - actions_release.yml
+      - audit_package.yml
+      - auto_cherry_pick.yml
+      - docker.yml
+  dangerous-triggers:
+    ignore:
+      - auto_cherry_pick.yml
+  template-injection:
+    ignore:
+      - actions_release.yml
+      - audit_package.yml
+      - docker.yml
+  artipacked:
+    ignore:
+      - actions_release.yml
+      - audit_package.yml
+      - docker.yml
