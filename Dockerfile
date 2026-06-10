@@ -28,7 +28,7 @@ FROM ghcr.io/clj-kondo/clj-kondo:2026.04.15-alpine@sha256:b142ebccd72a3f980fccac
 FROM dart:3.12.0-sdk@sha256:1bc3667e7e5d647bf0f00d62673790b06719ba39e108776a7cc3529887e81fb7 AS dart
 FROM mcr.microsoft.com/dotnet/sdk:10.0.300-alpine3.23@sha256:5c559aa5d99337e400d39ab4fa1f6979d126c29b20939d53658ed38300571e74 AS dotnet-sdk
 FROM composer/composer:2.9.8@sha256:a250c6759909bd7abe2090457e9dc68aa7b11bc19078a3d1a7f0be1294332377 AS php-composer
-FROM ghcr.io/aquasecurity/trivy:0.70.0@sha256:be1190afcb28352bfddc4ddeb71470835d16462af68d310f9f4bca710961a41e AS trivy
+FROM ghcr.io/aquasecurity/trivy:0.71.0@sha256:016eae51fdcf989332a5404af7e8f625cd5d95d7c0907a221d080a996f556500 AS trivy
 FROM ghcr.io/yannh/kubeconform:v0.7.0@sha256:85dbef6b4b312b99133decc9c6fc9495e9fc5f92293d4ff3b7e1b30f5611823c AS kubeconform
 
 FROM python:3.14.3-alpine3.23@sha256:faee120f7885a06fcc9677922331391fa690d911c020abb9e8025ff3d908e510 AS python-base
