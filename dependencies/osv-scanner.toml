@@ -1,0 +1,6 @@
+# OSV-Scanner config for step-security/super-linter.
+# Documented at https://google.github.io/osv-scanner/configuration/
+
+[[IgnoredVulns]]
+id = "CVE-2026-41305"
+reason = "Unused at runtime. postcss 8.4.31 is pulled only by `next`, which super-linter does not invoke."

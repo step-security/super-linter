@@ -1,0 +1,97 @@
+# Trivy ignore list for `trivy image` scans of step-security/super-linter.
+#
+# All entries are Go stdlib CVEs (or x/crypto, OpenTelemetry, Java JAR CVEs)
+# statically embedded in upstream tool binaries (helm, terraform, gitleaks,
+# kustomize, protolint, terragrunt, scalafmt, etc.). The vulnerable code
+# paths (crypto/tls, net/textproto, html/template, net/http, archive/*)
+# are dead bytes inside binaries that read source files and emit diagnostics.
+#
+# Revisit quarterly; remove entries as upstream tools rebuild with patched Go.
+
+# Go stdlib (current toolchains, Go 1.26.x)
+CVE-2026-25679
+CVE-2026-27137
+CVE-2026-27138
+CVE-2026-27139
+CVE-2026-27142
+CVE-2026-27145
+CVE-2026-32280
+CVE-2026-32281
+CVE-2026-32282
+CVE-2026-32283
+CVE-2026-32288
+CVE-2026-32289
+CVE-2026-33810
+CVE-2026-33811
+CVE-2026-33814
+CVE-2026-39820
+CVE-2026-39823
+CVE-2026-39825
+CVE-2026-39826
+CVE-2026-39836
+CVE-2026-42499
+CVE-2026-42504
+CVE-2026-42507
+
+# Go stdlib (older toolchains in kustomize, protolint, editorconfig-checker)
+CVE-2025-0913
+CVE-2025-4673
+CVE-2025-22870
+CVE-2025-22871
+CVE-2025-22873
+CVE-2025-22874
+CVE-2025-47906
+CVE-2025-47907
+CVE-2025-47910
+CVE-2025-47912
+CVE-2025-58183
+CVE-2025-58185
+CVE-2025-58186
+CVE-2025-58187
+CVE-2025-58188
+CVE-2025-58189
+CVE-2025-61723
+CVE-2025-61724
+CVE-2025-61725
+CVE-2025-61726
+CVE-2025-61727
+CVE-2025-61728
+CVE-2025-61729
+CVE-2025-61730
+CVE-2025-68121
+
+# x/crypto and OpenTelemetry (tflint plugins, gitleaks)
+CVE-2025-47914
+CVE-2025-58181
+CVE-2026-29181
+
+# gitleaks archive scanners (bounded impact: OOM only)
+CVE-2025-11579
+CVE-2025-58058
+
+# go-git / go-billy in terragrunt (no fetch path at lint time)
+CVE-2026-41506
+CVE-2026-44740
+CVE-2026-44973
+CVE-2026-45022
+CVE-2026-45570
+CVE-2026-45571
+GHSA-w5pp-99ch-qj29
+
+# Java JARs in scalafmt v3.11.1 (latest released)
+CVE-2025-11226
+CVE-2026-1225
+GHSA-72hv-8253-57qq
+
+# Unused at runtime. postcss 8.4.31 is pulled only by `next`, which
+# super-linter does not invoke.
+CVE-2026-41305
+
+# aws-sdk-go-v2 eventstream/s3 in tflint-ruleset-aws v0.47.0 (latest).
+# tflint statically inspects HCL files; AWS SDK call paths are not exercised.
+GHSA-xmrv-pmrh-hhx2
+
+# gRPC authz bypass in protolint v0.56.4 (latest).
+# protolint is a CLI that reads .proto files; it does not serve gRPC with
+# authz middleware. The vulnerable code path is unreachable.
+CVE-2026-33186

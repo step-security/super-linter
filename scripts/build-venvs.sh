@@ -34,6 +34,7 @@ for DEP_FILE in *.txt; do
   python -m venv .
   # shellcheck disable=SC1091
   source bin/activate
+  pip install --no-cache-dir --upgrade "pip>=26.1"
   pip install \
     --no-cache-dir \
     --requirement requirements.txt
