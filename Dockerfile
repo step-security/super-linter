@@ -31,7 +31,7 @@ FROM composer/composer:2.9.8@sha256:a250c6759909bd7abe2090457e9dc68aa7b11bc19078
 FROM ghcr.io/aquasecurity/trivy:0.71.0@sha256:016eae51fdcf989332a5404af7e8f625cd5d95d7c0907a221d080a996f556500 AS trivy
 FROM ghcr.io/yannh/kubeconform:v0.7.0@sha256:faffaf43f95aa6425306e1ab8d6fcad72acb9049158f38e574c085ea1ec0f64e AS kubeconform
 
-FROM python:3.14-alpine3.23@sha256:5a824eb82cc75361f98611f3cfc5091ea33f10a6ccea4d4ebdabbc523b9a1614 AS python-base
+FROM python:3.14-alpine3.23@sha256:02da11a8d221ca167aa07de20b3cd7104c1f01227f4b02b1fa13cf6517280a81 AS python-base
 
 FROM python-base AS clang-format
 
