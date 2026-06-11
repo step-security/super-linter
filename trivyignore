@@ -82,3 +82,16 @@ GHSA-w5pp-99ch-qj29
 CVE-2025-11226
 CVE-2026-1225
 GHSA-72hv-8253-57qq
+
+# Unused at runtime. postcss 8.4.31 is pulled only by `next`, which
+# super-linter does not invoke.
+CVE-2026-41305
+
+# aws-sdk-go-v2 eventstream/s3 in tflint-ruleset-aws v0.47.0 (latest).
+# tflint statically inspects HCL files; AWS SDK call paths are not exercised.
+GHSA-xmrv-pmrh-hhx2
+
+# gRPC authz bypass in protolint v0.56.4 (latest).
+# protolint is a CLI that reads .proto files; it does not serve gRPC with
+# authz middleware. The vulnerable code path is unreachable.
+CVE-2026-33186
