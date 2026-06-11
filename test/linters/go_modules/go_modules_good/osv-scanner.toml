@@ -1,0 +1,261 @@
+# OSV-Scanner config for go_modules_bad test fixture.
+#
+# This go.mod is intentionally pinned to specific versions to exercise the Go
+# linter. It is NOT a runtime dependency of super-linter and is never built or
+# executed, so vulnerabilities in the pinned versions are ignored here.
+
+# golang.org/x/crypto 0.45.0
+[[IgnoredVulns]]
+id = "GO-2026-5005"
+reason = "Test fixture only; not a runtime dependency."
+
+[[IgnoredVulns]]
+id = "GO-2026-5006"
+reason = "Test fixture only; not a runtime dependency."
+
+[[IgnoredVulns]]
+id = "GO-2026-5013"
+reason = "Test fixture only; not a runtime dependency."
+
+[[IgnoredVulns]]
+id = "GO-2026-5014"
+reason = "Test fixture only; not a runtime dependency."
+
+[[IgnoredVulns]]
+id = "GO-2026-5015"
+reason = "Test fixture only; not a runtime dependency."
+
+[[IgnoredVulns]]
+id = "GO-2026-5016"
+reason = "Test fixture only; not a runtime dependency."
+
+[[IgnoredVulns]]
+id = "GO-2026-5017"
+reason = "Test fixture only; not a runtime dependency."
+
+[[IgnoredVulns]]
+id = "GO-2026-5018"
+reason = "Test fixture only; not a runtime dependency."
+
+[[IgnoredVulns]]
+id = "GO-2026-5019"
+reason = "Test fixture only; not a runtime dependency."
+
+[[IgnoredVulns]]
+id = "GO-2026-5020"
+reason = "Test fixture only; not a runtime dependency."
+
+[[IgnoredVulns]]
+id = "GO-2026-5021"
+reason = "Test fixture only; not a runtime dependency."
+
+[[IgnoredVulns]]
+id = "GO-2026-5023"
+reason = "Test fixture only; not a runtime dependency."
+
+[[IgnoredVulns]]
+id = "GO-2026-5033"
+reason = "Test fixture only; not a runtime dependency."
+
+# golang.org/x/net 0.47.0
+[[IgnoredVulns]]
+id = "GO-2026-4918"
+reason = "Test fixture only; not a runtime dependency."
+
+[[IgnoredVulns]]
+id = "GO-2026-5025"
+reason = "Test fixture only; not a runtime dependency."
+
+[[IgnoredVulns]]
+id = "GO-2026-5026"
+reason = "Test fixture only; not a runtime dependency."
+
+[[IgnoredVulns]]
+id = "GO-2026-5027"
+reason = "Test fixture only; not a runtime dependency."
+
+[[IgnoredVulns]]
+id = "GO-2026-5028"
+reason = "Test fixture only; not a runtime dependency."
+
+[[IgnoredVulns]]
+id = "GO-2026-5029"
+reason = "Test fixture only; not a runtime dependency."
+
+[[IgnoredVulns]]
+id = "GO-2026-5030"
+reason = "Test fixture only; not a runtime dependency."
+
+# golang.org/x/sys 0.38.0
+[[IgnoredVulns]]
+id = "GO-2026-5024"
+reason = "Test fixture only; not a runtime dependency."
+
+# stdlib 1.24.1
+[[IgnoredVulns]]
+id = "GO-2025-3563"
+reason = "Test fixture only; not a runtime dependency."
+
+[[IgnoredVulns]]
+id = "GO-2025-3749"
+reason = "Test fixture only; not a runtime dependency."
+
+[[IgnoredVulns]]
+id = "GO-2025-3750"
+reason = "Test fixture only; not a runtime dependency."
+
+[[IgnoredVulns]]
+id = "GO-2025-3751"
+reason = "Test fixture only; not a runtime dependency."
+
+[[IgnoredVulns]]
+id = "GO-2025-3849"
+reason = "Test fixture only; not a runtime dependency."
+
+[[IgnoredVulns]]
+id = "GO-2025-3956"
+reason = "Test fixture only; not a runtime dependency."
+
+[[IgnoredVulns]]
+id = "GO-2025-4006"
+reason = "Test fixture only; not a runtime dependency."
+
+[[IgnoredVulns]]
+id = "GO-2025-4007"
+reason = "Test fixture only; not a runtime dependency."
+
+[[IgnoredVulns]]
+id = "GO-2025-4008"
+reason = "Test fixture only; not a runtime dependency."
+
+[[IgnoredVulns]]
+id = "GO-2025-4009"
+reason = "Test fixture only; not a runtime dependency."
+
+[[IgnoredVulns]]
+id = "GO-2025-4010"
+reason = "Test fixture only; not a runtime dependency."
+
+[[IgnoredVulns]]
+id = "GO-2025-4011"
+reason = "Test fixture only; not a runtime dependency."
+
+[[IgnoredVulns]]
+id = "GO-2025-4012"
+reason = "Test fixture only; not a runtime dependency."
+
+[[IgnoredVulns]]
+id = "GO-2025-4013"
+reason = "Test fixture only; not a runtime dependency."
+
+[[IgnoredVulns]]
+id = "GO-2025-4014"
+reason = "Test fixture only; not a runtime dependency."
+
+[[IgnoredVulns]]
+id = "GO-2025-4015"
+reason = "Test fixture only; not a runtime dependency."
+
+[[IgnoredVulns]]
+id = "GO-2025-4155"
+reason = "Test fixture only; not a runtime dependency."
+
+[[IgnoredVulns]]
+id = "GO-2025-4175"
+reason = "Test fixture only; not a runtime dependency."
+
+[[IgnoredVulns]]
+id = "GO-2026-4337"
+reason = "Test fixture only; not a runtime dependency."
+
+[[IgnoredVulns]]
+id = "GO-2026-4340"
+reason = "Test fixture only; not a runtime dependency."
+
+[[IgnoredVulns]]
+id = "GO-2026-4341"
+reason = "Test fixture only; not a runtime dependency."
+
+[[IgnoredVulns]]
+id = "GO-2026-4342"
+reason = "Test fixture only; not a runtime dependency."
+
+[[IgnoredVulns]]
+id = "GO-2026-4403"
+reason = "Test fixture only; not a runtime dependency."
+
+[[IgnoredVulns]]
+id = "GO-2026-4601"
+reason = "Test fixture only; not a runtime dependency."
+
+[[IgnoredVulns]]
+id = "GO-2026-4602"
+reason = "Test fixture only; not a runtime dependency."
+
+[[IgnoredVulns]]
+id = "GO-2026-4603"
+reason = "Test fixture only; not a runtime dependency."
+
+[[IgnoredVulns]]
+id = "GO-2026-4864"
+reason = "Test fixture only; not a runtime dependency."
+
+[[IgnoredVulns]]
+id = "GO-2026-4865"
+reason = "Test fixture only; not a runtime dependency."
+
+[[IgnoredVulns]]
+id = "GO-2026-4869"
+reason = "Test fixture only; not a runtime dependency."
+
+[[IgnoredVulns]]
+id = "GO-2026-4870"
+reason = "Test fixture only; not a runtime dependency."
+
+[[IgnoredVulns]]
+id = "GO-2026-4946"
+reason = "Test fixture only; not a runtime dependency."
+
+[[IgnoredVulns]]
+id = "GO-2026-4947"
+reason = "Test fixture only; not a runtime dependency."
+
+[[IgnoredVulns]]
+id = "GO-2026-4971"
+reason = "Test fixture only; not a runtime dependency."
+
+[[IgnoredVulns]]
+id = "GO-2026-4976"
+reason = "Test fixture only; not a runtime dependency."
+
+[[IgnoredVulns]]
+id = "GO-2026-4977"
+reason = "Test fixture only; not a runtime dependency."
+
+[[IgnoredVulns]]
+id = "GO-2026-4980"
+reason = "Test fixture only; not a runtime dependency."
+
+[[IgnoredVulns]]
+id = "GO-2026-4981"
+reason = "Test fixture only; not a runtime dependency."
+
+[[IgnoredVulns]]
+id = "GO-2026-4982"
+reason = "Test fixture only; not a runtime dependency."
+
+[[IgnoredVulns]]
+id = "GO-2026-4986"
+reason = "Test fixture only; not a runtime dependency."
+
+[[IgnoredVulns]]
+id = "GO-2026-5037"
+reason = "Test fixture only; not a runtime dependency."
+
+[[IgnoredVulns]]
+id = "GO-2026-5038"
+reason = "Test fixture only; not a runtime dependency."
+
+[[IgnoredVulns]]
+id = "GO-2026-5039"
+reason = "Test fixture only; not a runtime dependency."
