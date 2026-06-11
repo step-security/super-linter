@@ -25,7 +25,7 @@ FROM scalameta/scalafmt:v3.11.1@sha256:18a6c10f00920077e425b96301e365268332caf17
 FROM zricethezav/gitleaks:v8.30.1@sha256:c00b6bd0aeb3071cbcb79009cb16a60dd9e0a7c60e2be9ab65d25e6bc8abbb7f AS gitleaks
 FROM yoheimuta/protolint:0.56.4@sha256:c462eb6acd1327efc455e32a440c25dff78a7fe73ae40b364a4a59c11b234485 AS protolint
 FROM ghcr.io/clj-kondo/clj-kondo:2026.04.15-alpine@sha256:b142ebccd72a3f980fccac2ba7553d928c00da2d6611ad4e3f2454d50f7f3fa8 AS clj-kondo
-FROM dart:3.12.0-sdk@sha256:1bc3667e7e5d647bf0f00d62673790b06719ba39e108776a7cc3529887e81fb7 AS dart
+FROM dart:3.12.2-sdk@sha256:4380ee999fb926f00881ea01f9ef849b753a94d1fb10268d8c2277a515b53054 AS dart
 FROM mcr.microsoft.com/dotnet/sdk:10.0-alpine3.23@sha256:fac7cce841f78faa4bca416fb4c636d1a129c09abd9b50e9b45664b95fd008a0 AS dotnet-sdk
 FROM composer/composer:2.9.8@sha256:a250c6759909bd7abe2090457e9dc68aa7b11bc19078a3d1a7f0be1294332377 AS php-composer
 FROM ghcr.io/aquasecurity/trivy:0.71.0@sha256:016eae51fdcf989332a5404af7e8f625cd5d95d7c0907a221d080a996f556500 AS trivy
