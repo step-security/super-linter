@@ -29,7 +29,7 @@
     "npm-groovy-lint": "^17.0.5",
     "prettier": "^3.8.3",
     "react": "^19.2.6",
-    "react-dom": "^19.2.6",
+    "react-dom": "^19.2.7",
     "react-intl": "^10.1.7",
     "react-redux": "^9.3.0",
     "react-router-dom": "^7.15.1",
