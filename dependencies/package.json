@@ -4,7 +4,7 @@
     "@babel/eslint-parser": "^7.28.6",
     "@babel/preset-react": "^7.28.5",
     "@babel/preset-typescript": "^7.28.5",
-    "@biomejs/biome": "^2.4.15",
+    "@biomejs/biome": "^2.5.1",
     "@coffeelint/cli": "^5.2.11",
     "@commitlint/config-conventional": "^21.0.1",
     "@stoplight/spectral-cli": "^6.16.0",
