@@ -277,6 +277,22 @@ format-prettier: ## Run prettier to format the codebase
 		$(SUPER_LINTER_TEST_CONTAINER_URL) \
 		-c "prettier --write $(FILES_TO_FORMAT) '!test/linters/**/*bad*' '!test/linters/**/*bad*/**'"
 
+.PHONY: format-codebase ## Format the codebase
+format-codebase: \
+	format-prettier
+
+FILES_TO_FORMAT ?= .
+
+.PHONY: format-prettier
+format-prettier: ## Run prettier to format the codebase
+	docker run $(DOCKER_FLAGS) \
+		--entrypoint /bin/bash \
+		--rm \
+		-v "$(CURDIR):/tmp/lint" \
+		--workdir "/tmp/lint" \
+		$(SUPER_LINTER_TEST_CONTAINER_URL) \
+		-c "prettier --write $(FILES_TO_FORMAT)"
+
 # This is a smoke test to check how much time it takes to lint only a small
 # subset of files, compared to linting the whole codebase.
 .PHONY: lint-subset-files
@@ -688,4 +704,3 @@ test-git-valid-worktree: ## Run super-linter against a Git repository with workt
 		$(SUPER_LINTER_TEST_CONTAINER_URL) \
 		"run_test_case_git_valid_worktree" \
 		"$(IMAGE)"
-
