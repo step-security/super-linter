@@ -7,31 +7,31 @@
 #########################################
 # Get dependency images as build stages #
 #########################################
-FROM alpine/terragrunt:1.15.5@sha256:bcd08d0d8424ddf385b2942643fff1f9d5975af35021a6ec6664ac69e5a27a0a AS terragrunt
+FROM alpine/terragrunt:1.15.6@sha256:13b651dfaa030b96e2916b51183449475626275fa302a46763d1e914fb2ddf90 AS terragrunt
 FROM dotenvlinter/dotenv-linter:4.0.0@sha256:49a3c89203aeabb814e7fc028c4bcaf569c6ead29e58dbad5e348324d042d120 AS dotenv-linter
 FROM ghcr.io/terraform-linters/tflint:v0.63.1@sha256:890e37827d7b5e400f26137c5189c7efa581365fe9299b5b9814e5148d5978b9 AS tflint
-FROM alpine/helm:4.2.0@sha256:af08f75a3130d666a50b9fc150f40987ef20b885cf67659aabf4b83a5f2c5501 AS helm
-FROM golang:1.26-alpine@sha256:f23e8b227fb4493eabe03bede4d5a32d04092da71962f1fb79b5f7d1e6c2a17f AS golang
+FROM alpine/helm:4.2.1@sha256:f48dee30f194256463e61bf127acb2d50e9f46968c4fdb1243e67d96d9aba164 AS helm
+FROM golang:1.26.4-alpine@sha256:0648ddfa35769070197ba1cdf22a16dc452caf9315e66b91791308a543baf229 AS golang
 FROM golangci/golangci-lint:v2.12.2@sha256:5cceeef04e53efe1470638d4b4b4f5ceefd574955ab3941b2d9a68a8c9ad5240 AS golangci-lint
-FROM goreleaser/goreleaser:v2.15.4@sha256:f5ce92e9a38fb9406ccd638b95e43402cd3f4c567cb677eb06af9fd161278c12 AS goreleaser
+FROM goreleaser/goreleaser:v2.16.0@sha256:bc18394563e9d064f7fd62c1ef02ccbe5fcbdd384dd118052a17e635e58f0f75 AS goreleaser
 FROM hadolint/hadolint:v2.14.0-alpine@sha256:7aba693c1442eb31c0b015c129697cb3b6cb7da589d85c7562f9deb435a6657c AS dockerfile-lint
 FROM registry.k8s.io/kustomize/kustomize:v5.8.1@sha256:899fcd3bc898160e62bcaf82932b0cb29ba38d16272353db2e7acbba82129429 AS kustomize
 FROM hashicorp/terraform:1.15.6@sha256:adae45661e45d3c88beef071ee1277b4621cea73517aae7f0844657c8e85f641 AS terraform
 FROM koalaman/shellcheck:v0.11.0@sha256:bb596a0d169b85ddd81d8b6d3a2ff6d5baf5fca10b97f575ebc647c3dff62b3d AS shellcheck
-FROM mstruebing/editorconfig-checker:v3.6.1@sha256:ca20e3960d1bca908443ac2ddc900e5d10192fd68756dda962b14f8f04c22289 AS editorconfig-checker
+FROM mstruebing/editorconfig-checker:v3.7.0@sha256:96cb221f9dc3ce944589995fddf2274145a6c4afd468f110de080f19bcce0f56 AS editorconfig-checker
 FROM mvdan/shfmt:v3.13.1@sha256:f22f3936140be1ba02d493b5d2b91d0e8b4af93fd903e7f46c477822bca4a3be AS shfmt
 FROM rhysd/actionlint:1.7.12@sha256:b1934ee5f1c509618f2508e6eb47ee0d3520686341fec936f3b79331f9315667 AS actionlint
 FROM scalameta/scalafmt:v3.11.1@sha256:18a6c10f00920077e425b96301e365268332caf17d32cd19d0f63e845414e192 AS scalafmt
 FROM zricethezav/gitleaks:v8.30.1@sha256:c00b6bd0aeb3071cbcb79009cb16a60dd9e0a7c60e2be9ab65d25e6bc8abbb7f AS gitleaks
 FROM yoheimuta/protolint:0.56.4@sha256:c462eb6acd1327efc455e32a440c25dff78a7fe73ae40b364a4a59c11b234485 AS protolint
-FROM ghcr.io/clj-kondo/clj-kondo:2026.04.15-alpine@sha256:b142ebccd72a3f980fccac2ba7553d928c00da2d6611ad4e3f2454d50f7f3fa8 AS clj-kondo
-FROM dart:3.12.0-sdk@sha256:1bc3667e7e5d647bf0f00d62673790b06719ba39e108776a7cc3529887e81fb7 AS dart
-FROM mcr.microsoft.com/dotnet/sdk:10.0-alpine3.23@sha256:fac7cce841f78faa4bca416fb4c636d1a129c09abd9b50e9b45664b95fd008a0 AS dotnet-sdk
-FROM composer/composer:2.9.8@sha256:a250c6759909bd7abe2090457e9dc68aa7b11bc19078a3d1a7f0be1294332377 AS php-composer
-FROM ghcr.io/aquasecurity/trivy:0.71.0@sha256:016eae51fdcf989332a5404af7e8f625cd5d95d7c0907a221d080a996f556500 AS trivy
-FROM ghcr.io/yannh/kubeconform:v0.7.0@sha256:faffaf43f95aa6425306e1ab8d6fcad72acb9049158f38e574c085ea1ec0f64e AS kubeconform
+FROM ghcr.io/clj-kondo/clj-kondo:2026.05.25-alpine@sha256:1c2a46e4156331e2953862ad7c6c7df9e07bb87157beb650de182bdb5450d0b3 AS clj-kondo
+FROM dart:3.12.2-sdk@sha256:694cae58388079971a64f07258f719a2d8a8dcce42e6581b37a155ce852f2dbe AS dart
+FROM mcr.microsoft.com/dotnet/sdk:10.0.301-alpine3.23@sha256:4f9e72be70a2346fe3ac95bf97374dd51e988eb66fc798dbbe56281607f4d0c0 AS dotnet-sdk
+FROM composer/composer:2.10.1@sha256:43606cba7350acef196aef46795a47d65b559d39933feb92c702be1dfe51c1fc AS php-composer
+FROM ghcr.io/aquasecurity/trivy:0.71.1@sha256:b5d1b07e61c375597a6e2086bc110257348bba9f9f9a3b30e6e67f3ba0b1aa06 AS trivy
+FROM ghcr.io/yannh/kubeconform:v0.8.0@sha256:5103f6f5e89061728aad4ad5a250627dd0fc9b2a92eb876f3762677a4222f9e0 AS kubeconform
 
-FROM python:3.14-alpine3.23@sha256:5a824eb82cc75361f98611f3cfc5091ea33f10a6ccea4d4ebdabbc523b9a1614 AS python-base
+FROM python:3.14.6-alpine3.23@sha256:e10f6e0f219a81c65c518e339e7e9bf2f8c63b6ba1bf112e1bb2d1e395ed0c17 AS python-base
 
 FROM python-base AS clang-format
 
