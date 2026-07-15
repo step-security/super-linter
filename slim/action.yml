@@ -4,7 +4,7 @@ author: "step-security"
 description: "Super-linter is a ready-to-run collection of linters and code analyzers, to help validate your source code."
 runs:
   using: 'docker'
-  image: 'docker://ghcr.io/step-security/super-linter:slim-v8.6.0@sha256:74ec50a19205c0fc12db3e210553138e685f70374627eaf9c7e5270c16ff7816' #slim-v8.6.0
+  image: 'docker://ghcr.io/step-security/super-linter:slim-v8.7.0' #slim-v8.7.0
 branding:
   icon: "check-square"
   color: "white"

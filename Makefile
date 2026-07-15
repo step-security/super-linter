@@ -8,9 +8,6 @@ test: \
 	info \
 	validate-container-image-labels \
 	docker-build-check \
-	composer-audit \
-	npm-audit \
-	pip-audit \
 	test-lib \
 	inspec \
 	lint-codebase \
@@ -48,6 +45,13 @@ test: \
 	test-linters-expect-success-suppress-output-on-success \
 	test-linters-expect-success-suppress-output-on-success-log-level-notice \
 	test-linters-fix-mode
+
+.PHONY: audit ## Run dependency audits
+audit: \
+	composer-audit \
+	npm-audit \
+	pip-audit \
+	trivy
 
 SHELL := /bin/bash
 
@@ -246,6 +250,19 @@ pip-audit:  ## Run pip-audit to check for known vulnerable dependencies
 		--workdir / \
 		$(SUPER_LINTER_TEST_CONTAINER_URL)
 
+.PHONY: trivy
+trivy: ## Run trivy to check for known vulnerable dependencies
+	docker run \
+		-e RUN_LOCAL=true \
+		-e DEFAULT_BRANCH=main \
+		-e FILTER_REGEX_EXCLUDE=".*(/test/linters/|CHANGELOG.md|/test/data/test-repository-contents/).*" \
+		-e SAVE_SUPER_LINTER_SUMMARY=true \
+		-e VALIDATE_ALL_CODEBASE=true \
+		-e VALIDATE_TRIVY=true \
+		-v "$(CURDIR):/tmp/lint" \
+		--rm \
+		$(SUPER_LINTER_TEST_CONTAINER_URL)
+
 .PHONY: lint-codebase
 lint-codebase: ## Lint the entire codebase
 	$(CURDIR)/test/run-super-linter-tests.sh \
@@ -263,7 +280,8 @@ fix-codebase: ## Fix and format the entire codebase
 
 .PHONY: format-codebase ## Format the codebase
 format-codebase: \
-	format-prettier
+	format-prettier \
+	format-shfmt
 
 FILES_TO_FORMAT ?= .
 
@@ -276,6 +294,16 @@ format-prettier: ## Run prettier to format the codebase
 		--workdir "/tmp/lint" \
 		$(SUPER_LINTER_TEST_CONTAINER_URL) \
 		-c "prettier --write $(FILES_TO_FORMAT) '!test/linters/**/*bad*' '!test/linters/**/*bad*/**'"
+
+.PHONY: format-shfmt
+format-shfmt: ## Run shfmt to format shell scripts in the codebase
+	docker run $(DOCKER_FLAGS) \
+		--entrypoint /bin/bash \
+		--rm \
+		-v "$(CURDIR):/tmp/lint" \
+		--workdir "/tmp/lint" \
+		$(SUPER_LINTER_TEST_CONTAINER_URL) \
+		-c "shfmt --write $(FILES_TO_FORMAT)"
 
 # This is a smoke test to check how much time it takes to lint only a small
 # subset of files, compared to linting the whole codebase.
@@ -688,4 +716,3 @@ test-git-valid-worktree: ## Run super-linter against a Git repository with workt
 		$(SUPER_LINTER_TEST_CONTAINER_URL) \
 		"run_test_case_git_valid_worktree" \
 		"$(IMAGE)"
-
