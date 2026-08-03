@@ -57,6 +57,10 @@ reason = "Test fixture only; not a runtime dependency."
 id = "GO-2026-5033"
 reason = "Test fixture only; not a runtime dependency."
 
+[[IgnoredVulns]]
+id = "GO-2026-5932"
+reason = "Test fixture only; not a runtime dependency."
+
 # golang.org/x/net 0.47.0
 [[IgnoredVulns]]
 id = "GO-2026-4918"
@@ -86,9 +90,18 @@ reason = "Test fixture only; not a runtime dependency."
 id = "GO-2026-5030"
 reason = "Test fixture only; not a runtime dependency."
 
+[[IgnoredVulns]]
+id = "GO-2026-5942"
+reason = "Test fixture only; not a runtime dependency."
+
 # golang.org/x/sys 0.38.0
 [[IgnoredVulns]]
 id = "GO-2026-5024"
+reason = "Test fixture only; not a runtime dependency."
+
+# golang.org/x/text 0.31.0
+[[IgnoredVulns]]
+id = "GO-2026-5970"
 reason = "Test fixture only; not a runtime dependency."
 
 # stdlib 1.24.1
@@ -258,4 +271,12 @@ reason = "Test fixture only; not a runtime dependency."
 
 [[IgnoredVulns]]
 id = "GO-2026-5039"
+reason = "Test fixture only; not a runtime dependency."
+
+[[IgnoredVulns]]
+id = "GO-2026-4970"
+reason = "Test fixture only; not a runtime dependency."
+
+[[IgnoredVulns]]
+id = "GO-2026-5856"
 reason = "Test fixture only; not a runtime dependency."
