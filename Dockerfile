@@ -7,45 +7,45 @@
 #########################################
 # Get dependency images as build stages #
 #########################################
-FROM alpine/terragrunt:1.15.6@sha256:13b651dfaa030b96e2916b51183449475626275fa302a46763d1e914fb2ddf90 AS terragrunt
+FROM alpine/terragrunt:1.16.2@sha256:abadef8b8e8652becdd2057cd3d7c08270740be749ab16f05ec5bcae6f643cf8 AS terragrunt
 FROM dotenvlinter/dotenv-linter:4.0.0@sha256:49a3c89203aeabb814e7fc028c4bcaf569c6ead29e58dbad5e348324d042d120 AS dotenv-linter
-FROM ghcr.io/terraform-linters/tflint:v0.63.1@sha256:890e37827d7b5e400f26137c5189c7efa581365fe9299b5b9814e5148d5978b9 AS tflint
-FROM alpine/helm:4.2.1@sha256:f48dee30f194256463e61bf127acb2d50e9f46968c4fdb1243e67d96d9aba164 AS helm
-FROM golang:1.26.4-alpine@sha256:0648ddfa35769070197ba1cdf22a16dc452caf9315e66b91791308a543baf229 AS golang
-FROM golangci/golangci-lint:v2.12.2@sha256:5cceeef04e53efe1470638d4b4b4f5ceefd574955ab3941b2d9a68a8c9ad5240 AS golangci-lint
-FROM goreleaser/goreleaser:v2.16.0@sha256:bc18394563e9d064f7fd62c1ef02ccbe5fcbdd384dd118052a17e635e58f0f75 AS goreleaser
-FROM hadolint/hadolint:v2.14.0-alpine@sha256:7aba693c1442eb31c0b015c129697cb3b6cb7da589d85c7562f9deb435a6657c AS dockerfile-lint
+FROM ghcr.io/terraform-linters/tflint:v0.64.0@sha256:85c63179e53e69f48fb5d1e22fb6c2b4941049c7f906f30625defa6ffcc3f834 AS tflint
+FROM alpine/helm:4.3.0@sha256:377d0fc44fb5513cc6efd7b04e5a44d732fa82df2389aa03097f1aa0e103a731 AS helm
+FROM golang:1.27.1-alpine@sha256:cd9a32216aee5667f957a62d13a10032a63fd58e14b3f3d9cc8c2122f501e95e AS golang
+FROM golangci/golangci-lint:v2.13.2@sha256:66fb650730c873689cef045d2bbfb4bbc1e80acfb92a2b3d51dac0c1ea727db6 AS golangci-lint
+FROM goreleaser/goreleaser:v2.18.2@sha256:f42356d237f8949bb40b56de73330f95874bad67b972a6f0fabf30262a89bdc8 AS goreleaser
+FROM hadolint/hadolint:v2.15.1-alpine@sha256:405aca33131fe1b6ff1f6ab6c4b63fd78a36d28a0bada4a8344a6f91824203e0 AS dockerfile-lint
 FROM registry.k8s.io/kustomize/kustomize:v5.8.1@sha256:899fcd3bc898160e62bcaf82932b0cb29ba38d16272353db2e7acbba82129429 AS kustomize
-FROM hashicorp/terraform:1.15.6@sha256:adae45661e45d3c88beef071ee1277b4621cea73517aae7f0844657c8e85f641 AS terraform
+FROM hashicorp/terraform:1.16.3@sha256:2e7cea583faca1932ab508893f6278f82e135d3d68bc2858bcc4c80b2532396e AS terraform
 FROM koalaman/shellcheck:v0.11.0@sha256:bb596a0d169b85ddd81d8b6d3a2ff6d5baf5fca10b97f575ebc647c3dff62b3d AS shellcheck
-FROM mstruebing/editorconfig-checker:v3.7.0@sha256:96cb221f9dc3ce944589995fddf2274145a6c4afd468f110de080f19bcce0f56 AS editorconfig-checker
-FROM mvdan/shfmt:v3.13.1@sha256:f22f3936140be1ba02d493b5d2b91d0e8b4af93fd903e7f46c477822bca4a3be AS shfmt
+FROM mstruebing/editorconfig-checker:4.0.2@sha256:f997cfb58a878832c587e9e02aa3ba3eb984b7ea7a074f5523df40271fa4e637 AS editorconfig-checker
+FROM mvdan/shfmt:v3.14.1@sha256:18eb2bf53e31591b63bfc55cce8ad82ff7fd0ed53f506f71726be4942928b999 AS shfmt
 FROM rhysd/actionlint:1.7.12@sha256:b1934ee5f1c509618f2508e6eb47ee0d3520686341fec936f3b79331f9315667 AS actionlint
-FROM scalameta/scalafmt:v3.11.1@sha256:18a6c10f00920077e425b96301e365268332caf17d32cd19d0f63e845414e192 AS scalafmt
+FROM scalameta/scalafmt:v3.11.5@sha256:b93c8fc145e715a19f7637a0d0b342bd16565939c6643771691f65c0a7178b26 AS scalafmt
 FROM zricethezav/gitleaks:v8.30.1@sha256:c00b6bd0aeb3071cbcb79009cb16a60dd9e0a7c60e2be9ab65d25e6bc8abbb7f AS gitleaks
-FROM yoheimuta/protolint:0.56.4@sha256:c462eb6acd1327efc455e32a440c25dff78a7fe73ae40b364a4a59c11b234485 AS protolint
-FROM ghcr.io/clj-kondo/clj-kondo:2026.05.25-alpine@sha256:1c2a46e4156331e2953862ad7c6c7df9e07bb87157beb650de182bdb5450d0b3 AS clj-kondo
-FROM dart:3.12.2-sdk@sha256:694cae58388079971a64f07258f719a2d8a8dcce42e6581b37a155ce852f2dbe AS dart
-FROM mcr.microsoft.com/dotnet/sdk:10.0.301-alpine3.23@sha256:4f9e72be70a2346fe3ac95bf97374dd51e988eb66fc798dbbe56281607f4d0c0 AS dotnet-sdk
-FROM composer/composer:2.10.1@sha256:43606cba7350acef196aef46795a47d65b559d39933feb92c702be1dfe51c1fc AS php-composer
-FROM ghcr.io/aquasecurity/trivy:0.71.1@sha256:b5d1b07e61c375597a6e2086bc110257348bba9f9f9a3b30e6e67f3ba0b1aa06 AS trivy
+FROM yoheimuta/protolint:0.57.0@sha256:bef7d9418ebd82f0e10a483ebdde45f23cf4924a6c931a5f70fd8cfd785ba694 AS protolint
+FROM ghcr.io/clj-kondo/clj-kondo:2026.08.04-alpine@sha256:dcacaa903a84689375af737a124beb0efc1dfd7ae3590fa74f0663874312e327 AS clj-kondo
+FROM dart:3.13.4-sdk@sha256:e833be7efebe95d6bc714dd3d1fff279df6c2c813eb02d30f3067a8c8adc7ec7 AS dart
+FROM mcr.microsoft.com/dotnet/sdk:10.0.401-alpine3.23@sha256:a8fd188edaf76f5e23173d6e19e2e4274ccd2ad57cb26f3047f13b29d71ffb62 AS dotnet-sdk
+FROM composer/composer:2.10.3@sha256:ba4ef128607ec5faecb53cfae1253860ca6379302e77a5a4115d6e2402fd71a9 AS php-composer
+FROM ghcr.io/aquasecurity/trivy:0.74.0@sha256:ee940acbf1f58ebadb42d01434ce4609530bf1b52536afbd1eee66cd7123c5c9 AS trivy
 FROM ghcr.io/yannh/kubeconform:v0.8.0@sha256:5103f6f5e89061728aad4ad5a250627dd0fc9b2a92eb876f3762677a4222f9e0 AS kubeconform
 
-FROM python:3.14.6-alpine3.23@sha256:e10f6e0f219a81c65c518e339e7e9bf2f8c63b6ba1bf112e1bb2d1e395ed0c17 AS python-base
+FROM python:3.14.7-alpine3.24@sha256:4677924bcc0e94505a3270e87cb1601c2af54cd92d021b8dc306618a14333bbe AS python-base
 
 FROM python-base AS clang-format
 
 RUN apk add --no-cache \
   build-base \
-  clang21 \
+  clang22 \
   cmake \
   git \
-  llvm21-dev \
+  llvm22-dev \
   ninja-is-really-ninja
 
 WORKDIR /tmp
 RUN git clone \
-  --branch "llvmorg-$(llvm21-config  --version)" \
+  --branch "llvmorg-$(llvm22-config  --version)" \
   --depth 1 \
   https://github.com/llvm/llvm-project.git
 
@@ -185,19 +185,19 @@ RUN apk add --no-cache \
   openssh-client \
   parallel \
   perl \
-  php84 \
-  php84-ctype \
-  php84-curl \
-  php84-dom \
-  php84-iconv \
-  php84-pecl-igbinary \
-  php84-intl \
-  php84-mbstring \
-  php84-openssl \
-  php84-phar \
-  php84-simplexml \
-  php84-tokenizer \
-  php84-xmlwriter \
+  php85 \
+  php85-ctype \
+  php85-curl \
+  php85-dom \
+  php85-iconv \
+  php85-pecl-igbinary \
+  php85-intl \
+  php85-mbstring \
+  php85-openssl \
+  php85-phar \
+  php85-simplexml \
+  php85-tokenizer \
+  php85-xmlwriter \
   R \
   ruby
 
@@ -336,7 +336,7 @@ COPY --from=protolint /usr/local/bin/protolint /usr/bin/
 ################################
 # Install editorconfig-checker #
 ################################
-COPY --from=editorconfig-checker /usr/bin/ec /usr/bin/editorconfig-checker
+COPY --from=editorconfig-checker /usr/bin/editorconfig-checker /usr/bin/editorconfig-checker
 
 ###############################
 # Install hadolint dockerfile #
@@ -484,7 +484,7 @@ RUN mkdir -p "${HOME}"
 
 ENTRYPOINT ["/action/lib/linter.sh"]
 
-RUN if [ ! -e "/usr/bin/php" ]; then ln -s /usr/bin/php84 /usr/bin/php; fi
+RUN if [ ! -e "/usr/bin/php" ]; then ln -s /usr/bin/php85 /usr/bin/php; fi
 
 # Consider directories safe for Git because users might run Super-linter as an
 # arbitrary user. Also, some tools like commitlint and golangci-lint expect that
