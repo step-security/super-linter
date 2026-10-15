@@ -109,6 +109,12 @@ Super-linter supports the following tools:
 | **XML**                               | [LibXML](http://xmlsoft.org/)                                                                                                                                                                                             |                                                                                                                    |
 | **YAML**                              | [YamlLint](https://github.com/adrienverge/yamllint)                                                                                                                                                                       | [Prettier](https://prettier.io/)                                                                                   |
 
+Super-linter records the installed version of each linter and formatter in
+`/action/linterVersions.txt` inside the container image, and attaches
+`linterVersions.txt` (`standard` image) and `slim-linterVersions.txt` (`slim`
+image) as release assets on each
+[GitHub release](https://github.com/super-linter/super-linter/releases).
+
 ## Get started
 
 More in-depth [tutorial](https://www.youtube.com/watch?v=EDAmFKO4Zt0&t=118s)
