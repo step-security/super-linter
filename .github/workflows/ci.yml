@@ -294,7 +294,7 @@ jobs:
           # Tag the loaded image with the reference in action.yml so that
           # running the local action uses the newly built image without
           # modifying action.yml in the working tree.
-          ACTION_IMAGE="$(yq '.runs.image | sub("^docker://", "")' action.yml)"
+          ACTION_IMAGE="$(yq '.runs.image | sub("^docker://", "") | sub("@sha256:[a-f0-9]+$", "")' action.yml)"
           docker tag "${CONTAINER_IMAGE_ID}" "${ACTION_IMAGE}"
           docker image ls -a
 
