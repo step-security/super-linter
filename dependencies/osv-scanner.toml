@@ -3,4 +3,24 @@
 
 [[IgnoredVulns]]
 id = "CVE-2026-41305"
-reason = "Unused at runtime. postcss 8.4.31 is pulled only by `next`, which super-linter does not invoke."
+reason = "Not exploitable. postcss is used by stylelint for CSS parsing only; it never stringifies CSS into HTML, so the </style> XSS chain cannot be reached. The version bundled with next (8.5.23) is not invoked at runtime."
+
+# deepmerge 4.3.1
+[[IgnoredVulns]]
+id = "GHSA-gcqx-w48m-w2h4"
+reason = "No fix available. Prototype pollution via deepmerge (pulled by renovate) has no persistent impact in a short-lived CLI validation process."
+
+# glob 10.5.0, 13.0.6
+[[IgnoredVulns]]
+id = "GHSA-3g3m-2fjr-6pw4"
+reason = "Not exploitable. The abort-handling bypass requires AbortSignal cancellation of glob calls, which does not occur in CLI linting invocations."
+
+# katex 0.16.47
+[[IgnoredVulns]]
+id = "GHSA-238p-pmpm-9mq7"
+reason = "Not exploitable. katex is pulled by markdownlint-cli via micromark-extension-math for parsing only; katex HTML output is never rendered in a browser, so the XSS chain cannot be reached."
+
+# minimatch 3.1.5, 5.1.9, 9.0.9, 10.2.4, 10.2.5, 10.2.6
+[[IgnoredVulns]]
+id = "GHSA-g3hv-75wg-m249"
+reason = "Not exploitable in practice. The DoS requires attacker-controlled **/../ glob patterns with optimizationLevel>=2; patterns in super-linter are config-defined, not raw user input. Waiting on upstream tools to upgrade to minimatch 11.0.1."
